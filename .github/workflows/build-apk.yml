@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -45,3 +45,8 @@ jobs:
           path: Documenti.apk
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish direct APK download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v1.2.0 Documenti.apk --title "Documenti 1.2.0" --notes "Versione completa con nuovo design e navigazione PDF tramite swipe e pulsanti Indietro/Avanti."
