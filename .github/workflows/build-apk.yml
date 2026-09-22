@@ -37,7 +37,6 @@ jobs:
 
       - name: Apply Documenti 1.3.2 fixes
         run: |
-          cp patches/InteractivePdfFragment.kt source/MedSlideAndroid/app/src/main/java/it/ale/medslide/ui/InteractivePdfFragment.kt
           cp patches/1.3.2/app-build.gradle.kts source/MedSlideAndroid/app/build.gradle.kts
           cp patches/1.3.2/themes.xml source/MedSlideAndroid/app/src/main/res/values/themes.xml
           cp patches/1.3.2/themes-night.xml source/MedSlideAndroid/app/src/main/res/values-night/themes.xml
