@@ -1,0 +1,17 @@
+<resources>
+    <style name="Theme.MedSlide" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0D171C</item>
+        <item name="android:navigationBarColor">#0D171C</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">#79CEC4</item>
+        <item name="colorOnPrimary">#003733</item>
+        <item name="colorPrimaryContainer">#00504A</item>
+        <item name="colorOnPrimaryContainer">#9CF2E8</item>
+        <item name="colorSurface">#0D171C</item>
+        <item name="colorOnSurface">#DDE4E1</item>
+        <item name="android:colorAccent">#79CEC4</item>
+    </style>
+</resources>
