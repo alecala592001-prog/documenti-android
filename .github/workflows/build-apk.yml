@@ -35,11 +35,12 @@ jobs:
       - name: Extract project
         run: unzip -q Documenti-Android-source.zip -d source
 
-      - name: Apply Documenti 1.3.3 fixes
+      - name: Apply Documenti 1.3.4 fixes
         run: |
-          cp patches/1.3.3/app-build.gradle.kts source/MedSlideAndroid/app/build.gradle.kts
-          cp patches/1.3.3/themes.xml source/MedSlideAndroid/app/src/main/res/values/themes.xml
-          cp patches/1.3.3/themes-night.xml source/MedSlideAndroid/app/src/main/res/values-night/themes.xml
+          cp patches/1.3.4/app-build.gradle.kts source/MedSlideAndroid/app/build.gradle.kts
+          cp patches/1.3.4/themes.xml source/MedSlideAndroid/app/src/main/res/values/themes.xml
+          cp patches/1.3.4/themes-night.xml source/MedSlideAndroid/app/src/main/res/values-night/themes.xml
+          cp patches/1.3.4/MedSlideApplication.kt source/MedSlideAndroid/app/src/main/java/it/ale/medslide/MedSlideApplication.kt
 
       - name: Build and unit test APK
         working-directory: source/MedSlideAndroid
@@ -48,13 +49,13 @@ jobs:
           ./gradlew :app:testDebugUnitTest :app:assembleDebug --stacktrace
 
       - name: Rename APK
-        run: cp source/MedSlideAndroid/app/build/outputs/apk/debug/app-debug.apk Documenti-1.3.3-tablet.apk
+        run: cp source/MedSlideAndroid/app/build/outputs/apk/debug/app-debug.apk Documenti-1.3.4-tablet.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Documenti-Android-1.3.3
-          path: Documenti-1.3.3-tablet.apk
+          name: Documenti-Android-1.3.4
+          path: Documenti-1.3.4-tablet.apk
           if-no-files-found: error
           retention-days: 30
 
@@ -74,7 +75,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: PDF-regression-results-1.3.3
+          name: PDF-regression-results-1.3.4
           path: source/MedSlideAndroid/app/build/reports/androidTests
 
       - name: Publish APK download
@@ -82,8 +83,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view v1.3.3 >/dev/null 2>&1; then
-            gh release create v1.3.3 Documenti-1.3.3-tablet.apk --title "Documenti 1.3.3" --notes "Corretto il crash del visualizzatore PDF dovuto al tema Android. Include zoom, navigazione, selezione testo/link e protezione dal crash al riavvio."
+          if ! gh release view v1.3.4 >/dev/null 2>&1; then
+            gh release create v1.3.4 Documenti-1.3.4-tablet.apk --title "Documenti 1.3.4" --notes "Corretto il crash del visualizzatore PDF dovuto al tema Android. Include zoom, navigazione, selezione testo/link e protezione dal crash al riavvio."
           else
-            gh release upload v1.3.3 Documenti-1.3.3-tablet.apk --clobber
+            gh release upload v1.3.4 Documenti-1.3.4-tablet.apk --clobber
           fi
